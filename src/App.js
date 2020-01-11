@@ -12,6 +12,8 @@ import Login from './component/auth/Login';
 import Alert from './component/layout/Alert';
 import SetAuthToken from './utils/setAuthToken';
 import PrivateRoute from './component/routing/private';
+import ProductState from './context/product/productState';
+import Product from './component/pages/Product'
 
 
 if (localStorage.token) {
@@ -20,6 +22,7 @@ if (localStorage.token) {
 
 const App = () => {
   return (
+    <ProductState>
     <AuthState>
       <ContactState>
         <AlertState>
@@ -33,6 +36,7 @@ const App = () => {
                   <Route exact path='/about' component={About} />
                   <Route exact path="/register" component={Register} />
                   <Route exact path="/login" component={Login} />
+                  <Route exact path="/product" component={Product} />
                 </Switch>
               </div>
             </React.Fragment>
@@ -40,6 +44,7 @@ const App = () => {
         </AlertState>
       </ContactState>
     </AuthState>
+    </ProductState>
   );
 }
 

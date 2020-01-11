@@ -15,6 +15,7 @@ const Navbar = ({ title, icon }) => {
         <React.Fragment>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/about">About</Link></li>
+            
             <li><Link to="/register">Register</Link></li>
             <li><Link to="/login">Login</Link></li>
         </React.Fragment>
@@ -37,6 +38,7 @@ const Navbar = ({ title, icon }) => {
             </h1>
 
             <ul>
+            <li><Link to="/product">Product</Link></li>
                 {isAuthenticated ? authLink : gustLink}
             </ul>
 

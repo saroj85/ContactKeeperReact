@@ -24,5 +24,13 @@ export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 
 
+export const GET_ALL_PRODUCT = "GET_ALL_PRODUCT";
+export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
+export const DELETE_PRODUCT = "DELETE_PRODUCT";
+export const PRODUCT_ERROR = "PRODUCT_ERROR";
+export const EDIT_PRODUCT = "EDIT_PRODUCT";
+
+
+
 
 
