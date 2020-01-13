@@ -13,13 +13,16 @@ import {
 const ProductState = (props) => {
     const initialState = {
         products: [],
-        current: null,
+        currentProduct:  null,
         filterd: null,
         error: null
     };
 
     const [state, dispatch] = useReducer(ProductReducer, initialState);
-    // GET CONTACTS 
+
+
+
+    // GET Products 
 
     const getProduct = async () => {
         try {
@@ -28,10 +31,30 @@ const ProductState = (props) => {
         } catch (err) {
             dispatch({
                 type: PRODUCT_ERROR,
-                payload: err.response.msg
+                payload: err.response
             })
         }
     }
+
+
+
+    // get Products by id 
+    const getProductById = async id => {
+        try {
+            const res = await axois.get(`/api/product/${id}`)
+            dispatch({ type: GET_PRODUCT_BY_ID, payload: res.data})
+        } catch (err) {
+            dispatch({
+                type: PRODUCT_ERROR,
+                payload: err.response
+            })
+        }
+    }
+
+
+
+
+
 
 
     // // ADD CONTACTS
@@ -111,7 +134,9 @@ const ProductState = (props) => {
         <ProductContext.Provider
             value={{
                 products: state.products,
-                getProduct
+                getProduct,
+                getProductById,
+                currentProduct : state.currentProduct
             }}>
             {props.children}
         </ProductContext.Provider>

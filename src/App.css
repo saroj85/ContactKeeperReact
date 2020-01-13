@@ -214,29 +214,21 @@ table {
 	text-transform: capitalize;
 }
 
-
-
-
-
-
-
-/* --- Product Card ---- */
-#make-3D-space{
-    position: relative;
-	cursor: pointer;
+img{
+	max-width: 100%;
 }
 
-#product-front, #product-back{
-	width:335px;
-	height:500px;
+
+
+
+
+
+#product-front{
 	background:#fff;
-	position:absolute;
-	left:-5px;
-	top:-5px;
-	-webkit-transition: all 100ms ease-out; 
-       -moz-transition: all 100ms ease-out; 
-         -o-transition: all 100ms ease-out; 
-            transition: all 100ms ease-out; 
+	border: 1px solid #ccc;
+	padding: 10px;
+	border-radius: 3px;
+	box-sizing: border-box;
 }
 #product-back{
 	display:none;
@@ -246,6 +238,7 @@ table {
 .stats-container .product_name{
 	font-size:22px;
 	color:#393c45;	
+	margin-bottom: 10px;
 }
 .stats-container p{
 	font-size:16px;
@@ -253,7 +246,6 @@ table {
 	padding:2px 0 20px 0;
 }
 .stats-container .product_price{
-	float:right;
 	color:#48cfad;
 	font-size:22px;
 	font-weight:600;
@@ -301,4 +293,18 @@ div.c-white span{
 	width:14px;
 	height:14px; 
 	border:1px solid #e8e9eb;
+}
+
+.p_not_avalibal{
+	color: red;
+	position: absolute;
+}
+
+.offer{
+	display: inline-block;
+    background: chocolate;
+    color: #fff;
+    padding: 3px;
+	font-size: 10px;
+	position: absolute;
 }
