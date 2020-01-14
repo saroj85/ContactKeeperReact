@@ -44,7 +44,8 @@ const ContactForm = () => {
             addContact(contact);
         }
         else{
-            updateContact(contact)
+            updateContact(contact);
+            clearCurrent();
         }
         // console.log(contactContext.addContact)
         setContact({

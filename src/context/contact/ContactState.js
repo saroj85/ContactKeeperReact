@@ -47,6 +47,7 @@ const ContactState = (props) => {
         try {
             const res = await axois.post("/api/contacts", contact, config)
             dispatch({ type: ADD_CONTACT, payload: res.data })
+            // getContacts()
         } catch (err) {
             dispatch({
                 type: CONTACTS_ERROR,
@@ -63,7 +64,9 @@ const ContactState = (props) => {
         const config = { headers: { 'Content-Type': 'application/json' } }
         try {
             const res = await axois.put(`/api/contacts/${contact._id}`, contact, config)
+            console.log("UPDATE", res.data)
             dispatch({ type: UPDATE_CONTACT, payload: res.data })
+            
         } catch (err) {
             dispatch({
                 type: CONTACTS_ERROR,
