@@ -31,6 +31,9 @@ export const PRODUCT_ERROR = "PRODUCT_ERROR";
 export const EDIT_PRODUCT = "EDIT_PRODUCT";
 
 
+export const VERIFY_OTP = "VERIFY_OTP";
+export const SEND_OTP = "SEND_OTP";
+
 
 
 

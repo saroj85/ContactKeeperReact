@@ -11,18 +11,21 @@ import {
     LOGIN_SUCESS,
     LOGIN_FAIL,
     LOGOUT,
-    CLEAR_ERRORS
+    CLEAR_ERRORS,
+    VERIFY_OTP,
+    SEND_OTP
 } from '../type';
 
 
 const AuthState = (props) => {
     const initialState = {
-        token: localStorage.getItem("token"),
+        token: localStorage.getItem("token") ,
         isAuthenticated: null,
         loading: true,
         error: null,
         user: null
     };
+    
     const [state, dispatch] = useReducer(AuthReducer, initialState);
 
     // load user 
@@ -50,15 +53,65 @@ const AuthState = (props) => {
                 type: REGISTER_SUCCESS,
                 payload: res.data
             })
-            loadUser();
+            sendOtpReq(FormData.email)
+            // loadUser();
         } catch (err) {
             dispatch({
                 type: REGISTER_FAIL,
-                payload: err.response.data.msg
+                payload: err.response
             })
 
         }
     }
+
+
+
+    // send otp 
+
+    const sendOtpReq = async (email) => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        try {
+            const res = await axois.post('/api/users/otp', {"email": email}, config);
+            dispatch({
+                type: SEND_OTP,
+            })
+            
+        }catch(err){
+            dispatch({
+                type: REGISTER_FAIL,
+            })
+        }
+    };
+
+
+    // send otp for verify 
+    
+    const sendOtpVerify = async (otp) => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        try {
+            const res = await axois.post('/api/users/otpverify', {"otpNum": otp}, config);
+            dispatch({
+                type: VERIFY_OTP,
+            })
+
+            
+        }catch(err){
+            dispatch({
+                type: REGISTER_FAIL,
+            })
+        }
+    };
+
 
 
     // Login user 
@@ -110,7 +163,8 @@ const AuthState = (props) => {
                 loadUser,
                 login,
                 logout,
-                clearError
+                clearError,
+                sendOtpVerify
             }}>
             {props.children}
         </AuthContext.Provider>

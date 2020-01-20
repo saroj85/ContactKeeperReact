@@ -7,7 +7,7 @@ const Register = (props) => {
     const alertContext = useContext(AlertContext)
     const authContext = useContext(AuthContext)
 
-    const { registerUser, error, clearError, isAuthenticated } = authContext;
+    const { registerUser, error, clearError , sendOtpVerify} = authContext;
 
     const [user, setUser] = useState({
         name: "",
@@ -15,19 +15,26 @@ const Register = (props) => {
         password: "",
         password2: ""
     })
+
+    const [otp, setotp] = useState("");
+
     const { name, email, password, password2 } = user;
 
-    useEffect(() => {
-        if (isAuthenticated)  props.history.push("/")
-        if (error === "user already exitis") {
-            alertContext.setAlert("User already register");
-        }
-        clearError() 
-        // console.log("error", error)
-    }, [error, isAuthenticated, props.history])
+    // useEffect(() => {
+    //     if (isAuthenticated)  props.history.push("/")
+    //     if (error === "user already exitis") {
+    //         alertContext.setAlert("User already register");
+    //     }
+    //     clearError() 
+    //     // console.log("error", error)
+    // }, [error, isAuthenticated, props.history])
 
     const onchange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value })
+    }
+
+    const onChangeOtp = (e) => {
+        setotp(e.target.value)
     }
 
     const onSubmit = () => {
@@ -68,6 +75,11 @@ const Register = (props) => {
             </div>
             <div className="form_group">
                 <button className="btn edit_btn" onClick={onSubmit}>Register</button>
+            </div>
+
+            <div>
+                <input type="text" name="otp" value={otp} onChange={onChangeOtp} className="input" />
+                <button onClick={() => sendOtpVerify(otp)}>Verify Otp</button>
             </div>
 
         </div>
